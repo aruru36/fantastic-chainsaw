@@ -51,11 +51,11 @@ public class FollowCamera : MonoBehaviour
         //Makes sure that these variables never go over the max and be les than the min.
         distance = Mathf.Clamp(distance, DISTANCE_MIN, DISTANCE_MAX);
         trandis = Mathf.Clamp(distance, TRANS_MIN, TRANS_MAX) - 1;
-        //Sets players transparency(Make sure that player materials rendering mode has set to transparent or other mode that supports transparency).
-        player.GetComponent<Renderer>().material.color = new Color(player.GetComponent<Renderer>().material.color.r, player.GetComponent<Renderer>().material.color.g, player.GetComponent<Renderer>().material.color.b, trandis);
-        //Disables the object from rendering if your're at distance 2.
-        if (distance <= 2f) { player.GetComponent<Renderer>().enabled = false; }
-        if (distance > 2f) { player.GetComponent<Renderer>().enabled = true; }
+        ////Sets players transparency(Make sure that player materials rendering mode has set to transparent or other mode that supports transparency).
+        //player.GetComponent<Renderer>().material.color = new Color(player.GetComponent<Renderer>().material.color.r, player.GetComponent<Renderer>().material.color.g, player.GetComponent<Renderer>().material.color.b, trandis);
+        ////Disables the object from rendering if your're at distance 2.
+        //if (distance <= 2f) { player.GetComponent<Renderer>().enabled = false; }
+        //if (distance > 2f) { player.GetComponent<Renderer>().enabled = true; }
         //If close enough to the character sinp into distance of 0.1(If distance is 0 the camera cant be rotated.)
         if (distance <= 0.8f && below == false) { distance = 0.1f; below = true; }
         if (distance >= 0.8f && below == true) { below = false; }

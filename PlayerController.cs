@@ -206,14 +206,14 @@ public class PlayerController : MonoBehaviour
 
         if (other.tag == "Enemy")
         {
-            if (other.GetComponent<EnemyHealth>().Health > 0.0f)
+            if (other.GetComponent<EnemyHealth>().enemyHealth > 0.0f)
             {
                 triggeringEnemy = true;
             }
         }
         if (other.tag == "Boss")
         {
-            if (other.GetComponent<EnemyHealth>().Health > 0.0f)
+            if (other.GetComponent<EnemyHealth>().enemyHealth > 0.0f)
             {
                 triggeringEnemy = true;
             }

@@ -10,7 +10,7 @@ public class PlayerSword : MonoBehaviour
     public GameObject particle;
     public GameObject explosion;
     public float damage = 4f;
-    
+    public GameObject hit;
 
     private void Start()
     {
@@ -22,15 +22,17 @@ public class PlayerSword : MonoBehaviour
         if (other.tag == "Enemy")
         {
             enemy = other.gameObject;
+
             if (enemy.GetComponent<EnemyHealth>().InvTime <= 0)
             {
                 enemy.GetComponent<EnemyHealth>().InvTime = 1.5f;
-                enemy.GetComponent<EnemyHealth>().Health -= damage;                
-                if (enemy.GetComponent<EnemyHealth>().Health <= 0.0f)
+                enemy.GetComponent<EnemyHealth>().enemyHealth -= damage;
+                Instantiate(hit, transform.position, transform.rotation);
+                
+                if (enemy.GetComponent<EnemyHealth>().enemyHealth <= 0.0f)
                 {
                     Die();
                     Instantiate(particle,transform.position,transform.rotation);
-
                 }
             }
         }
@@ -40,13 +42,13 @@ public class PlayerSword : MonoBehaviour
             if (boss.GetComponent<EnemyHealth>().InvTime <= 0)
             {
                 boss.GetComponent<EnemyHealth>().InvTime = 2.5f;
-                boss.GetComponent<EnemyHealth>().Health -= damage;
+                boss.GetComponent<EnemyHealth>().enemyHealth -= damage;
                 boss.GetComponent<Animation>().CrossFade("Hit");
-                if (boss.GetComponent<EnemyHealth>().Health <= 15f)
+                if (boss.GetComponent<EnemyHealth>().enemyHealth <= 15f)
                     {
                     damage = 1f;
                 }
-                if (boss.GetComponent<EnemyHealth>().Health <= 0.0f)
+                if (boss.GetComponent<EnemyHealth>().enemyHealth <= 0.0f)
                 {
                     Destroy(boss);
                     PlayerController pc = GetComponentInParent<PlayerController>();
@@ -54,6 +56,7 @@ public class PlayerSword : MonoBehaviour
                     pc.attacked = false;
                     Instantiate(explosion, transform.position, transform.rotation);
                     Destroy(wood);
+                    boss.GetComponent<EnemyBoss>().sound3.SetActive(false);
                 }
             }
         }

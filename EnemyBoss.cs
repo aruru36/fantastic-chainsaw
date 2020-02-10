@@ -16,6 +16,8 @@ public class EnemyBoss : MonoBehaviour
 
     private bool triggeringPlayer;
     public bool aggro;
+    public GameObject sound2;
+    public GameObject sound3;
 
     private bool attacked;
 
@@ -81,6 +83,7 @@ public class EnemyBoss : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            sound3.SetActive(true);
             triggeringPlayer = true;
             other.SendMessage((isDamaging) ? "TakeDamage" : "HealDamage", damage);
         }

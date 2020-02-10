@@ -56,7 +56,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            if (movetarget == 0)
+            if (movetarget == 0 && target1 != null)
             {
                 //gerak ke target a
                 this.transform.position = Vector3.MoveTowards(transform.position, target1.transform.position, movementSpeed);
@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour
                     movetarget = 1;
                 }
             }
-            else
+            else if(target2 != null)
             {
                 //gerak ke target b
                 this.transform.position = Vector3.MoveTowards(transform.position, target2.transform.position, movementSpeed);
